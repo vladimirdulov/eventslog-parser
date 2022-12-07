@@ -51,15 +51,15 @@ class LogParser {
 		$parser->parse_command_line();
 
 		$parser->start();
-        try {
-            $parser->run();
+		try {
+			$parser->run();
 		} catch(Exception $e) {
 			$parser->log(LOG_CRIT, get_class($e).": ".$e->getMessage());
 			return;
 		}
 		finally {
-            $parser->finish();
-        }
+			$parser->finish();
+		}
 	}
 
 	static function _level_for_priority($priority) {
