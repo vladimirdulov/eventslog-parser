@@ -182,5 +182,5 @@ class LogParser {
 
 
 if (isset($argv) && basename(__FILE__) == basename($argv[0])) {
-		LogParser::main();
+	LogParser::main();
 }
