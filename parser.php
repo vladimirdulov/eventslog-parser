@@ -4,6 +4,7 @@
 	
  Simple Log Parser
 
+Calculates number of NOK records per minute
 
 Log file should have records in the following format:
 
@@ -97,26 +98,26 @@ class LogParser {
 	function parse_command_line($extra_options = "") {
 		$opts = getopt("hvf:".$extra_options);
 		if(isset($opts['h']) || !isset($opts['f']) || empty($opts['f'])) {
-            $this->usage($extra_options);
-            exit();
-        }
+			$this->usage($extra_options);
+			exit();
+		}
 
-        if(isset($opts['v']))
-            $this->set_verbose();
+		if(isset($opts['v']))
+			$this->set_verbose();
 
 		if(isset($opts['f']))
-            $this->set_log_filename($opts['f']);
+			$this->set_log_filename($opts['f']);
 
 		return $opts;
 	}
 
 	function set_verbose($setting = true) {
-        $this->verbose = $setting;
+		$this->verbose = $setting;
 	}
 
 	function set_log_filename($filename) {
 		$this->log_filename = $filename;
-        $this->log(LOG_NOTICE, "File {$filename} being processed to calculate number of NOK records per minute");
+		$this->log(LOG_NOTICE, "File {$filename} being processed to calculate number of NOK records per minute");
 	}
 
 	function start() {
@@ -174,8 +175,8 @@ class LogParser {
 	function log($priority, $message) {
 		$level = self::_level_for_priority($priority);
 
-        if ($this->verbose && $priority <= LOG_INFO || $priority <= LOG_CRIT)
-            fwrite(STDERR, ($this->verbose ? date("Y-m-d H:i:s") . " ({$level}) : " : "") . "{$message}\n");
+		if ($this->verbose && $priority <= LOG_INFO || $priority <= LOG_CRIT)
+			fwrite(STDERR, ($this->verbose ? date("Y-m-d H:i:s") . " ({$level}) : " : "") . "{$message}\n");
 	}
 }
 
